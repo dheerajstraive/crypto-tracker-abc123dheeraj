@@ -1,0 +1,80 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Prices</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .crypto-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .crypto-item {
+            margin: 10px 0;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .crypto-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="crypto-container">
+        <h1>Top 5 Cryptos</h1>
+        <div id="crypto-list">
+            <!-- Crypto prices will be populated here -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mockData = [
+                { id: 1, name: "Bitcoin", price: "$56,000" },
+                { id: 2, name: "Ethereum", price: "$4,200" },
+                { id: 3, name: "Binance Coin", price: "$580" },
+                { id: 4, name: "Cardano", price: "$2.10" },
+                { id: 5, name: "Solana", price: "$185" }
+            ];
+            
+            function fetchCryptoPrices() {
+                // This should involve an API call to CoinGecko, but for local use, we use mock data
+                const cryptoList = document.getElementById('crypto-list');
+                cryptoList.innerHTML = '';
+
+                mockData.forEach(crypto => {
+                    const cryptoItem = document.createElement('div');
+                    cryptoItem.className = 'crypto-item';
+                    cryptoItem.innerHTML = `<strong>${crypto.name}</strong>: ${crypto.price}`;
+                    cryptoList.appendChild(cryptoItem);
+                });
+            }
+
+            // Initial fetch
+            fetchCryptoPrices();
+
+            // Set interval to fetch every 60 seconds
+            setInterval(fetchCryptoPrices, 60000);
+        });
+    </script>
+</body>
+</html>
+```
